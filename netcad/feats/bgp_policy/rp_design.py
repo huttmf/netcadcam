@@ -7,6 +7,7 @@ from .rt_def_policy import RoutePolicy
 from .rt_def_route_map import RouteMap
 from .rt_def_community import Community
 from .rt_def_prefixlist import PrefixList
+from .rt_def_rm_actions import ActionCommunityDelete
 
 T = TypeVar("T")
 
@@ -29,6 +30,11 @@ class RoutingPolicyDeviceContext:
                 if not ri_intent.seq:
                     ri_intent.seq = rm.seq
                     rm.seq += rm.seq_step
+
+                # Community lists need to be created even if they are
+                # only used in a Community Delete action.
+                if isinstance(ri_intent.action, ActionCommunityDelete):
+                    self.communities.append(ri_intent.action.community)
 
                 if isinstance(ri_intent.match, PrefixList):
                     self.prefix_lists.append(ri_intent.match)
