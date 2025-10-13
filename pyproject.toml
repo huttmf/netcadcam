@@ -1,6 +1,10 @@
 [tool.poetry]
     name = "netcad"
+<<<<<<< HEAD
     version = "1.3.8"
+=======
+    version = "1.3.7"
+>>>>>>> 64d0172763e7d506e5c6349a418eb05c68cd788d
     description = "NetCAD/CAM - Design Driven Network Assurance"
     authors = ["Jeremy Schulman"]
     readme = "README.md"
